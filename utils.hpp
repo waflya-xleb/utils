@@ -34,9 +34,13 @@ namespace su {
 
 	void write_obj( const std::string& path, Voxel vx[] );
 
-	void log_save( const std::string& path, warning_struct warning_list, std::string& error_text, std::chrono::duration<float> program_time );
+	void log_save_new( const std::string& path, const std::string& msg, bool rewrite );
 
-	void error_log_save( const std::string& path, warning_struct warning_list, std::string& error_text, std::chrono::duration<float> program_time );
+	void log_save_new( const std::string& path, const std::string& current_thread, const int current_tick, const std::string& current_file, const std::string& action, const std::string& msg, const std::chrono::duration<float> program_time );
+
+	void log_save( const std::string& path, warning_struct warning_list, const std::string& error_text, std::chrono::duration<float> program_time );
+
+	void error_log_save( const std::string& path, warning_struct warning_list, const std::string& error_text, std::chrono::duration<float> program_time );
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> timer_start();
 
