@@ -36,7 +36,7 @@ namespace su {
 	}// arg_foo()
 
 
-	void write_obj( const std::string& path, Voxel vx[] ) {
+	/*void write_obj( const std::string& path, Voxel vx[] ) {
 		std::ofstream fout;
 		fout.open( path );
 
@@ -52,9 +52,9 @@ namespace su {
 			}
 		}
 		fout.close();
-	}// write_obj()
+	}// write_obj()*/
 
-	void log_save_new( const std::string& path, const std::string& msg, bool rewrite ) {
+	void action_log_save( const std::string& path, const std::string& msg, bool rewrite ) {
 		std::ofstream fout;
 		if ( !rewrite ) {
 			fout.open( path, std::ofstream::app );
@@ -96,9 +96,9 @@ namespace su {
 			fout << "[" << year << "." << month << "." << day << " " << time << "]   " << msg << "\n";
 		}
 		fout.close();
-	}// log_save_new()
+	}// action_log_save()
 
-	void log_save_new( const std::string& path, const std::string& current_thread, const int current_tick, const std::string& current_file, const std::string& action, const std::string& msg, const std::chrono::duration<float> program_time ) {
+	void action_log_save( const std::string& path, const std::string& current_thread, const int current_tick, const std::string& current_file, const std::string& action, const std::string& msg, const std::chrono::duration<float> program_time ) {
 		std::ofstream fout;
 		fout.open( path, std::ofstream::app );
 
@@ -144,44 +144,7 @@ namespace su {
 
 		}
 		fout.close();
-	}// log_save_new()
-
-	void log_save( const std::string& path, warning_struct warning_list, const std::string& error_text, std::chrono::duration<float> program_time ) {
-		std::ofstream fout;
-		fout.open( path );
-
-		if ( !fout.is_open() ) {
-			throw std::runtime_error( "\nfailed to save log!\n" );
-		} else {
-			fout << "<====================-LOG-FILE-====================>\n\n";
-			fout <<	"PROGRAM STATUS: end are success!\n\n";
-			fout <<	"=====================-DATE-=====================\n\n";
-			std::time_t now_time = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
-			fout << std::ctime( &now_time ) << "\n";
-			fout <<	"=====================-WARNING-=====================\n\n";
-			fout << "warning count: " << warning_list.warning.size() << "\n";
-			fout << "---------------------\n";
-			for ( uint16_t i = 0; i < warning_list.warning.size(); i++ ) {
-				fout << "warning: " << warning_list.warning[i] << "\n";
-			}
-			fout << "\n";
-
-			fout << "=====================-WARNING_L2-=====================\n\n";
-			fout << "warning_L2 count: " << warning_list.warning_L2.size() << "\n";
-			fout << "---------------------\n";
-			for ( uint16_t i = 0; i < warning_list.warning_L2.size(); i++ ) {
-				fout << "warning_L2: " << warning_list.warning_L2[i] << "\n";
-			}
-			fout << "\n";
-
-			fout <<	"=====================-ERROR-=====================\n\n";
-			fout << error_text << "\n\n";
-			fout <<	"=====================-ABOUT-PROGRAM-=====================\n\n";
-			fout << "program time: " << program_time << "\n\n";
-			fout << "<====================-END-FILE-====================>\n";
-		}
-		fout.close();
-	}// log_save()
+	}// action_log_save()
 
 	void error_log_save( const std::string& path, warning_struct warning_list, const std::string& error_text, std::chrono::duration<float> program_time ) {
 		std::ofstream fout;
