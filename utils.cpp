@@ -92,6 +92,9 @@ namespace su {
 			if ( month == "Mar" ) {
 				month = "03";
 			}
+			if ( month == "Apr" ) {
+				month = "04";
+			}
 
 			fout << "[" << year << "." << month << "." << day << " " << time << "]   " << msg << "\n";
 		}
@@ -133,6 +136,9 @@ namespace su {
 
 			if ( month == "Mar" ) {
 				month = "03";
+			}
+			if ( month == "Apr" ) {
+				month = "04";
 			}
 
 			tab_space_size = ( tab_space_size - current_file.size() ) - action.size();
